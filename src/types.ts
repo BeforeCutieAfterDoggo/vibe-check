@@ -1,4 +1,10 @@
-export type QuestionType = "scale" | "multiple-choice" | "short-answer";
+// export type QuestionType = "scale" | "multiple-choice" | "short-answer";
+
+export enum QuestionType {
+  SCALE = "scale",
+  MULTIPLE_CHOICE = "multiple-choice",
+  SHORT_ANSWER = "short-answer",
+}
 
 export type QuestionSource = "admin" | "user" | "bot";
 
@@ -14,7 +20,7 @@ export interface Question {
 }
 
 export interface ScaleQuestion extends Question {
-  type: "scale";
+  type: QuestionType.SCALE;
   min: number;
   max: number;
   step: number;
@@ -23,7 +29,7 @@ export interface ScaleQuestion extends Question {
 }
 
 export interface MultipleChoiceQuestion extends Question {
-  type: "multiple-choice";
+  type: QuestionType.MULTIPLE_CHOICE;
   options: string[];
   allowOther: boolean;
   maxSelections?: number;
@@ -31,7 +37,7 @@ export interface MultipleChoiceQuestion extends Question {
 }
 
 export interface ShortAnswerQuestion extends Question {
-  type: "short-answer";
+  type: QuestionType.SHORT_ANSWER;
 }
 
 export interface Answer {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import SubmitQuestion from "../components/SubmitQuestion";
 import useSession from "../hooks/useSession";
 import { handleAxiosError } from "../lib/fetcher";
 
@@ -18,6 +19,7 @@ const TestPage = () => {
     <div>
       <h1>Test Page</h1>
       <button onClick={handleSeed}>Seed DB</button>
+      <SubmitQuestion />
     </div>
   );
 };

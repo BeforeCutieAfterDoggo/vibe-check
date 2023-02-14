@@ -2,7 +2,7 @@ import { ToastContainer } from "react-toastify";
 import QuestionCard from "../../components/QuestionCard";
 import SubmitQuestion from "../../components/SubmitQuestion";
 import useQuestions from "../../hooks/useQuestions";
-import useMyAnswers from "../../hooks/useUnansweredQuestions";
+import useMyAnswers from "../../hooks/useMyAnswers";
 
 export default function Home() {
   const [questions, loading, error] = useQuestions();

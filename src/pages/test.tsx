@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import useSession from "../hooks/useSession";
 import { handleAxiosError } from "../lib/fetcher";
+import { Question } from "../types";
 
 const TestPage = () => {
   const handleSeed = async () => {
@@ -18,6 +19,15 @@ const TestPage = () => {
     <div>
       <h1>Test Page</h1>
       <button onClick={handleSeed}>Seed DB</button>
+      {session && (
+        <div>
+          {session.questions.map((question: Question, idx) => (
+            <div key={idx}>
+              <h2>{question.text}</h2>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

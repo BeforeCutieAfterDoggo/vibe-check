@@ -18,6 +18,8 @@ export interface ScaleQuestion extends Question {
   min: number;
   max: number;
   step: number;
+  minLabel: string;
+  maxLabel: string;
 }
 
 export interface MultipleChoiceQuestion extends Question {

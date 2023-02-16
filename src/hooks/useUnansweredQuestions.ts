@@ -1,17 +1,16 @@
-import { collection, query, where } from "firebase/firestore";
 import { useContext } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { firestore } from "../lib/firebase";
 import { AnonymousUserContext } from "../providers/AnonymousUserProvider";
+import { Session } from "../types";
 
-const useMyAnswers = () => {
+const useUnansweredQuestions = (session: Session | null) => {
   const user = useContext(AnonymousUserContext);
-  const answersCollection = collection(firestore, "answers");
-  const answersQuery = query(
-    answersCollection,
-    where("userId", "==", user ? user.uid : "")
+  if (!session) return [];
+  const answeredQuestions = session.answers[user?.uid || ""] || [];
+  const answeredQuestionIds = answeredQuestions.map((a) => a.questionId);
+  const unansweredQuestions = session.questions.filter(
+    (question) => !answeredQuestionIds.includes(question.id)
   );
-  return useCollection(answersQuery);
+  return unansweredQuestions;
 };
 
-export default useMyAnswers;
+export default useUnansweredQuestions;

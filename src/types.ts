@@ -14,6 +14,7 @@ export type QuestionUnion =
   | ShortAnswerQuestion;
 
 export interface Question {
+  id: string;
   type: QuestionType;
   text: string;
   source: QuestionSource;
@@ -26,8 +27,6 @@ export interface ScaleQuestion extends Question {
   step: number;
   minLabel: string;
   maxLabel: string;
-  enableNote: boolean;
-  noteComment?: string;
 }
 
 export interface MultipleChoiceQuestion extends Question {

@@ -8,37 +8,11 @@ import Link from "next/link";
 import useSessions from "../../hooks/useSessions";
 export default function Explore() {
   const [searchTerm, setSearchTerm] = useState("");
-  // give me an array of 3 prefilled groups with random names
-  //use the getSession api to get the groups
-  const [allGroups, setAllGroups] = useState([
-    {
-      name: "Group 1",
-      description: "This is a group",
-      members: 10,
-      id: 1,
-    },
-    {
-      name: "Group 2",
-      description: "This is a group",
-      members: 10,
-      id: 2,
-    },
-    {
-      name: "Group 3",
-      description: "This is a group",
-      members: 10,
-      id: 3,
-    },
-    {
-      name: "Group 4",
-      description: "This is a group",
-      members: 10,
-      id: 3,
-    },
-  ]);
   const [sessions] = useSessions();
 
-  const allSessions = sessions?.docs.map((doc) => doc.data())!;
+  const allSessions = sessions?.docs.map((doc) => {
+    return { ...doc.data(), sessionId: doc.id };
+  });
   console.log(allSessions);
   const fuse = new Fuse(allSessions, {
     keys: ["sessionName", "description"],

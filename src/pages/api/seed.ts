@@ -9,6 +9,7 @@ export interface QuestionRequestBody {
 
 const questions: QuestionUnion[] = [
   {
+    id: "1",
     type: QuestionType.SCALE,
     source: "admin",
     text: "How good is your experience regarding human connection at mars so far?",
@@ -17,10 +18,9 @@ const questions: QuestionUnion[] = [
     step: 1,
     minLabel: "Not good",
     maxLabel: "Very good",
-    enableNote: true,
-    noteComment: "What could be improved?",
   },
   {
+    id: "2",
     type: QuestionType.MULTIPLE_CHOICE,
     source: "admin",
     text: "What are your personal motivations for coming to mars?",
@@ -37,24 +37,25 @@ const questions: QuestionUnion[] = [
     allowOther: true,
   },
   {
+    id: "3",
     type: QuestionType.SHORT_ANSWER,
     source: "admin",
     text: "What is one thing you appreciate about mars?",
   },
 ];
 
-const session: Session = {
+const sessionData = {
   sessionName: "Test Session",
   description: "This is a test session",
   questions,
-  answers: [],
+  answers: {},
   active: false,
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     try {
-      await firestoreAdmin.collection("sessions").add(session);
+      await firestoreAdmin.collection("sessions").add(sessionData);
       res.status(200).json({ message: "Question created successfully" });
     } catch (error) {
       console.error(error);

@@ -1,4 +1,4 @@
-import { Checkbox, Input } from "antd";
+import { Checkbox, Input, Space } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import React from "react";
 import { MultipleChoiceQuestion } from "../../types";
@@ -31,10 +31,15 @@ const MultipleChoiceQuestionView = ({
   };
   return (
     <>
-      <Checkbox.Group options={question.options} onChange={handleChange} />
+      <Checkbox.Group   onChange={handleChange} />
+      <Space direction="vertical">
+        {question.options.map((option:any) => (
+          <Checkbox value={option}>{option}</Checkbox>
+        ))}
+      </Space>
       {question.allowOther && (
         <div>
-          <Checkbox value="other" checked={otherText !== ""}>
+          <Checkbox value="other"  checked={otherText !== ""}>
             Other
           </Checkbox>
           <Input value={otherText} onChange={(e) => handleOtherChange(e)} />

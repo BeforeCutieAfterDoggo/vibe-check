@@ -10,10 +10,10 @@ const SessionAdminPage = () => {
   console.log(session);
   if (loading) return <div>Loading...</div>;
   return (
-    <div>
+    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 ">
       {session && (
         <>
-          <SessionAdminControls session={session} />
+          {/* <SessionAdminControls session={session} /> */}
           <AllQuestionsView session={session} />
         </>
       )}

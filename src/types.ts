@@ -26,6 +26,8 @@ export interface ScaleQuestion extends Question {
   step: number;
   minLabel: string;
   maxLabel: string;
+  enableNote: boolean;
+  noteComment?: string;
 }
 
 export interface MultipleChoiceQuestion extends Question {
@@ -50,6 +52,7 @@ export interface Answer {
 export interface Session {
   sessionName: string;
   description: string;
+  active: boolean;
   questions: QuestionUnion[];
   answers: Answer[];
 }

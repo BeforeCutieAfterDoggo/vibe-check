@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import GroupForm from "../components/GroupForm";
 export default function CreateGroup(props: any) {
   return (

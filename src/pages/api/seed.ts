@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { text } from "stream/consumers";
 import { firestoreAdmin } from "../../lib/firebaseAdmin";
-import { QuestionUnion, Session } from "../../types";
+import { QuestionType, QuestionUnion, Session } from "../../types";
 
 export interface QuestionRequestBody {
   text: string;
@@ -9,15 +9,19 @@ export interface QuestionRequestBody {
 
 const questions: QuestionUnion[] = [
   {
-    type: "scale",
+    type: QuestionType.SCALE,
     source: "admin",
     text: "How good is your experience regarding human connection at mars so far?",
     min: 1,
     max: 5,
     step: 1,
+    minLabel: "Not good",
+    maxLabel: "Very good",
+    enableNote: true,
+    noteComment: "What could be improved?",
   },
   {
-    type: "multiple-choice",
+    type: QuestionType.MULTIPLE_CHOICE,
     source: "admin",
     text: "What are your personal motivations for coming to mars?",
     options: [
@@ -33,7 +37,7 @@ const questions: QuestionUnion[] = [
     allowOther: true,
   },
   {
-    type: "short-answer",
+    type: QuestionType.SHORT_ANSWER,
     source: "admin",
     text: "What is one thing you appreciate about mars?",
   },
@@ -44,6 +48,7 @@ const session: Session = {
   description: "This is a test session",
   questions,
   answers: [],
+  active: false,
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

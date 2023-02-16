@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import SubmitQuestion from "../components/SubmitQuestion";
+import SubmitQuestion from "../components/Questions/SubmitQuestion";
 import useSession from "../hooks/useSession";
 import { handleAxiosError } from "../lib/fetcher";
 

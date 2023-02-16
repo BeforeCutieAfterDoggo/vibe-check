@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import { handleAxiosError } from "../lib/fetcher";
-import { QuestionType } from "../types";
+import { handleAxiosError } from "../../lib/fetcher";
+import { QuestionType } from "../../types";
 import { Select } from "antd";
 
 const ScaleQuestionForm = () => {

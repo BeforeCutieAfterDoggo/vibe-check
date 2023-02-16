@@ -3,6 +3,16 @@ import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { handleAxiosError } from "../../lib/fetcher";
 import { AnonymousUserContext } from "../../providers/AnonymousUserProvider";
+import { QuestionType } from "../../types";
+import MultipleChoiceQuestion from "./MultipleChoiceQuestionView";
+import ScaleQuestion from "./ScaleQuestionView";
+import ShortAnswerQuestion from "./ShortAnswerQuestionView";
+
+const questionComponentMap = {
+  [QuestionType.SCALE]: ScaleQuestion,
+  [QuestionType.MULTIPLE_CHOICE]: MultipleChoiceQuestion,
+  [QuestionType.SHORT_ANSWER]: ShortAnswerQuestion,
+};
 
 const QuestionCard = ({
   question,
@@ -11,6 +21,7 @@ const QuestionCard = ({
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});
+  console.log(response);
   const submitAnswer = async (e: any) => {
     e.preventDefault();
     if (!user) return;
@@ -49,6 +60,11 @@ const QuestionCard = ({
   return (
     <div className="max-w-sm mx-auto p-4 bg-white rounded-md shadow-md">
       <h1 className="text-3xl font-bold mb-4">{question.text}</h1>
+      {questionComponentMap[question.type]({
+        question,
+        response,
+        setResponse,
+      })}
       <button
         className="px-4 py-2 text-white bg-blue-500 rounded-md shadow-sm hover:bg-blue-600"
         type="submit"

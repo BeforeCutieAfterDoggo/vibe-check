@@ -7,11 +7,11 @@ const AllQuestionsView = ({ session }: { session: Session }) => {
   return (
     <>
       <h1>Questions</h1>
-      {/* {session.questions.map((question, idx) => (
+      {session.questions.map((question, idx) => (
         <div key={idx}>
           <QuestionCard question={question} />;
         </div>
-      ))} */}
+      ))}
     </>
   );
 };

@@ -30,6 +30,7 @@ const QuestionCard = ({
       await axios.post("/api/answer", {
         userId,
         questionId,
+        sessionId: question.sessionId,
         response,
         skipped: false,
       });
@@ -48,7 +49,8 @@ const QuestionCard = ({
       await axios.post("/api/answer", {
         userId,
         questionId,
-        response: "",
+        sessionId: question.sessionId,
+        response: {},
         skipped: true,
       });
     } catch (error) {
@@ -79,7 +81,6 @@ const QuestionCard = ({
         >
           Submit
         </button>
-
       </div>
     </div>
   );

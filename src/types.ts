@@ -15,6 +15,7 @@ export type QuestionUnion =
 
 export interface Question {
   id: string;
+  sessionId: string;
   type: QuestionType;
   text: string;
   source: QuestionSource;
@@ -43,12 +44,14 @@ export interface ShortAnswerQuestion extends Question {
 
 export interface Answer {
   userId: string;
+  sessionId: string;
   questionId: string;
   response: any;
   skipped: boolean;
 }
 
 export interface Session {
+  id: string;
   sessionName: string;
   description: string;
   active: boolean;

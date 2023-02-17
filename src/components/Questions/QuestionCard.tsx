@@ -20,7 +20,7 @@ const QuestionCard = ({
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});
-  console.log(response);
+  console.log("q", question);
   const submitAnswer = async (e: any) => {
     e.preventDefault();
     if (!user) return;
@@ -30,6 +30,7 @@ const QuestionCard = ({
       await axios.post("/api/answer", {
         userId,
         questionId,
+        sessionId: question.sessionId,
         response,
         skipped: false,
       });
@@ -48,7 +49,8 @@ const QuestionCard = ({
       await axios.post("/api/answer", {
         userId,
         questionId,
-        response: "",
+        sessionId: question.sessionId,
+        response: {},
         skipped: true,
       });
     } catch (error) {
@@ -79,7 +81,6 @@ const QuestionCard = ({
         >
           Submit
         </button>
-
       </div>
     </div>
   );

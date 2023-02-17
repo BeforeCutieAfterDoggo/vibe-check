@@ -17,7 +17,7 @@ const HomePage = () => {
           Vibe Check
         </h1>
         <div className="flex space-x-4">
-          <Link href="/explore">
+          <Link href="/sessions">
             <button className="border border-white text-white py-2 px-4 rounded-lg">
               Explore
             </button>

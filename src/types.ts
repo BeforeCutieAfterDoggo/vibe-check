@@ -1,12 +1,8 @@
-// export type QuestionType = "scale" | "multiple-choice" | "short-answer";
-
 export enum QuestionType {
   SCALE = "scale",
   MULTIPLE_CHOICE = "multiple-choice",
   SHORT_ANSWER = "short-answer",
 }
-
-export type QuestionSource = "admin" | "user" | "bot";
 
 export type QuestionUnion =
   | ScaleQuestion
@@ -18,7 +14,6 @@ export interface Question {
   sessionId: string;
   type: QuestionType;
   text: string;
-  source: QuestionSource;
 }
 
 export interface ScaleQuestion extends Question {

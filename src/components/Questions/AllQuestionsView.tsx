@@ -13,9 +13,8 @@ const AllQuestionsView = () => {
       <h1 className="text-center font-bold  text-3xl font-serif py-10 ">
         Questions
       </h1>
-      {session &&
-        session.questions &&
-        session.questions.map((question, idx) => (
+      {unansweredQuestions &&
+        unansweredQuestions.map((question, idx) => (
           <div key={idx}>
             <QuestionCard question={question} />;
           </div>

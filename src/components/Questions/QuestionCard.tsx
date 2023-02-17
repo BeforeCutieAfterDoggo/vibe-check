@@ -20,7 +20,7 @@ const QuestionCard = ({
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});
-  console.log(response);
+  console.log("q", question);
   const submitAnswer = async (e: any) => {
     e.preventDefault();
     if (!user) return;

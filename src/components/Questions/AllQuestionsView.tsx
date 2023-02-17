@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { getUnansweredQuestions } from "../../lib/questions";
 import { SessionContext } from "../../providers/SessionProvider";
 import QuestionCard from "./QuestionCard";
 
 const AllQuestionsView = () => {
   const session = useContext(SessionContext);
-  console.log(session);
+  const unansweredQuestions =
+    session && getUnansweredQuestions(session.questions, session.answers);
+  console.log("unansweredQuestions", unansweredQuestions);
   return (
     <>
       <h1 className="text-center font-bold  text-3xl font-serif py-10 ">

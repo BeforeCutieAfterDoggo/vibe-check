@@ -1,14 +1,17 @@
 import { collection, query, where } from "firebase/firestore";
+import { useContext } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { firestore } from "../lib/firebase";
+import { AnonymousUserContext } from "../providers/AnonymousUserProvider";
 
-const useQuestions = (sessionId: string) => {
-  // Get all questions where sessionId === sessionId
+const useAnswers = (sessionId: string) => {
+  const user = useContext(AnonymousUserContext);
   const q = query(
     collection(firestore, "answers"),
-    where("sessionId", "==", sessionId || "xxxxxx")
+    where("sessionId", "==", sessionId || "xxxxxx"),
+    where("userId", "==", user?.uid || "xxxxxx")
   );
   return useCollectionData(q);
 };
 
-export default useQuestions;
+export default useAnswers;

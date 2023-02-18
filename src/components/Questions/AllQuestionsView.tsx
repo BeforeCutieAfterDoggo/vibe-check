@@ -10,7 +10,7 @@ const AllQuestionsView = () => {
   console.log("unansweredQuestions", unansweredQuestions);
   return (
     <>
-      <h1 className="text-center font-bold  text-3xl font-serif py-10 ">
+      <h1 className="text-center text-white italic underline decoration-wavy decoration-4 tracking-wide font-bold  text-3xl font-serif py-10 ">
         Questions
       </h1>
       {unansweredQuestions &&

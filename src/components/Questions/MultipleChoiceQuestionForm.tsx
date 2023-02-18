@@ -3,7 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import type { InputRef } from "antd";
 import { Input, Tag, theme } from "antd";
 
-const MultipleChoiceQuestionForm = () => {
+export default function MultipleChoiceQuestionForm() {
   const [data, setData] = useState({
     channels: ["Tag 1", "Tag 2", "Tag 3"],
   });
@@ -60,10 +60,10 @@ const MultipleChoiceQuestionForm = () => {
 
   const tagChild = tags.map(forMap);
 
-  const tagPlusStyle = {
-    background: token.colorBgContainer,
-    borderStyle: "dashed",
-  };
+  // const tagPlusStyle = {
+  //   background: token.colorBgContainer,
+  //   borderStyle: "dashed",
+  // };
 
   return (
     <>
@@ -80,7 +80,7 @@ const MultipleChoiceQuestionForm = () => {
           onPressEnter={handleInputConfirm}
         />
       ) : (
-        <Tag onClick={showInput} style={tagPlusStyle}>
+        <Tag onClick={showInput} >
           <PlusOutlined /> Add
         </Tag>
       )}
@@ -88,4 +88,3 @@ const MultipleChoiceQuestionForm = () => {
   );
 };
 
-export default MultipleChoiceQuestionForm;

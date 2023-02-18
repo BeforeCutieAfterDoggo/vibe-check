@@ -63,31 +63,25 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className=" bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#7CEAA1] via-violet-600 to-sky-900 to-orange-300 min-h-screen ">
-      <img
-        src="/images/bg.png"
-        alt="Background"
-        className="absolute inset-0 z-0 w-full h-full object-cover blur-sm "
-      />
-      <header className=" border-b-2 ">
+    <div className="bg-[url('/images/bg.png')] bg-fixed bg-center bg-cover sm:h-screen">
 
-        <div className="relative max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto p-8">
+        <div className=" mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-white text-5xl font-bold mb-8 underline decoration-wavy decoration-4 tracking-wide italic font-serif text-center">
             Vibeboard
           </h1>
 
         </div>
-      </header>
-      <main className="relative max-w-7xl mx-auto  sm:px-6 lg:px-8 ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 pb-10 sm:px-0">
-          {questions.map((question, idx) => (
-            <div key={idx}>
-              <VisualCard question={question} />
-            </div>
-          ))}
-        </div>
-      </main>
-
+        <main className=" mx-auto  sm:px-6 lg:px-8 ">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-10 sm:px-0">
+            {questions.map((question, idx) => (
+              <div key={idx}>
+                <VisualCard question={question} />
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

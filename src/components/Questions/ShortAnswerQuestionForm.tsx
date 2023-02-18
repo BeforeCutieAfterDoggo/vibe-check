@@ -5,7 +5,7 @@ import { handleAxiosError } from "../../lib/fetcher";
 import { SessionContext } from "../../providers/SessionProvider";
 import { QuestionType } from "../../types";
 
-const ShortAnswerQuestionForm = () => {
+export default function ShortAnswerQuestionForm() {
   const sessionInfo = useContext(SessionContext);
   const [questionText, setQuestionText] = React.useState("");
 
@@ -31,11 +31,12 @@ const ShortAnswerQuestionForm = () => {
         value={questionText}
         onChange={(e) => setQuestionText(e.target.value)}
       />
-      <Button type="primary" onClick={handleSubmit}>
+      <Button
+        className="mt-2 bg-black text-white"
+        onClick={handleSubmit}>
         Submit
       </Button>
     </div>
   );
 };
 
-export default ShortAnswerQuestionForm;

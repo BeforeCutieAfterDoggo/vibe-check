@@ -8,14 +8,28 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <SessionProvider sessionId={router.query.session as string}>
-      <AllQuestionsView />
-      <div className="flex flex-col h-screen">
-        <div className="p-4">
-          <SubmitQuestion />
-        </div>
-        <ToastContainer />
+    <>
+      <div className="bg-[url('/images/bg.png')] bg-fixed bg-center bg-cover">
+
+        <SessionProvider sessionId={router.query.session as string}>
+          {/* <img
+          src="/images/bg.png"
+          alt="Background"
+          className="absolute inset-0 z-0 w-full h-full object-cover blur-sm "
+        /> */}
+          <div className="relative">
+            <div className="p-4">
+              <SubmitQuestion />
+            </div>
+            <AllQuestionsView />
+
+            <div className="flex flex-col h-screen">
+
+              <ToastContainer />
+            </div>
+          </div>
+        </SessionProvider>
       </div>
-    </SessionProvider>
+    </>
   );
 }

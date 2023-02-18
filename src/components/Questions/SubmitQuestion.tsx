@@ -14,9 +14,9 @@ const questionTypeLabelMap = {
 };
 
 const questionTypeComponentMap = {
-  [QuestionType.SCALE]: ShortAnswerQuestionForm,
-  [QuestionType.MULTIPLE_CHOICE]: MultipleChoiceQuestionForm,
-  [QuestionType.SHORT_ANSWER]: ShortAnswerQuestionForm,
+  [QuestionType.SCALE]: <ScaleQuestionForm />,
+  [QuestionType.MULTIPLE_CHOICE]: <MultipleChoiceQuestionForm />,
+  [QuestionType.SHORT_ANSWER]: <ShortAnswerQuestionForm/>
 };
 
 const SubmitQuestion = () => {
@@ -25,17 +25,21 @@ const SubmitQuestion = () => {
   );
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white rounded-md shadow-md">
-      <h1 className="text-3xl font-bold mb-4">Submit a Question</h1>
-      <Select value={questionType} onChange={setQuestionType}>
-        {Object.values(QuestionType).map((type, idx) => (
-          <Select.Option value={type} key={idx}>
-            {questionTypeLabelMap[type]}
-          </Select.Option>
-        ))}
-      </Select>
-      {questionTypeComponentMap[questionType]()}
-    </div>
+    <>
+      <h1 className="text-center text-white italic underline decoration-wavy decoration-4 tracking-wide font-bold  text-3xl font-serif py-10 ">
+        Submit a Question</h1>
+
+      <div className="max-w-md mx-auto p-4 bg-white rounded-md shadow-md">
+        <Select value={questionType} onChange={setQuestionType}>
+          {Object.values(QuestionType).map((type, idx) => (
+            <Select.Option value={type} key={idx}>
+              {questionTypeLabelMap[type]}
+            </Select.Option>
+          ))}
+        </Select>
+        {questionTypeComponentMap[questionType]}
+      </div>
+    </>
   );
 };
 

@@ -35,7 +35,7 @@ const MultipleChoiceVisual = ({
 
     return (
         <>
-            <div className="h-52">
+            <div className="h-48">
                 <p className='font-serif font-bold text-center'>{question.question}</p>
 
                 <ResponsiveRadar
@@ -43,7 +43,7 @@ const MultipleChoiceVisual = ({
                     keys={['count']}
                     indexBy="choice"
                     // valueFormat=">-.2f"
-                    margin={{ top: 20, right: 80, bottom: 20, left: 80 }}
+                    margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
                     borderColor={{ from: 'color' }}
                     gridLabelOffset={36}
                     dotSize={10}
@@ -77,7 +77,7 @@ const MultipleChoiceVisual = ({
                     ]}
                 />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
             <MCModal others={others2} />
             </div>
 

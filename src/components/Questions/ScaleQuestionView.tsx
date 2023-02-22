@@ -23,18 +23,21 @@ const ScaleQuestionView = ({
   };
   return (
     <>
-      <Radio.Group onChange={(e) => handleChange(e)}>
-        {valueRange.map((option) => (
-          <Radio key={option} value={option}>
-            {option}
-          </Radio>
-        ))}
-      </Radio.Group>
-      <br />
-      <Space>
-        {question.minLabel && <span>{question.minLabel}</span>}
-        {question.maxLabel && <span>{question.maxLabel}</span>}
-      </Space>
+      <div className="flex justify-center">
+        <Radio.Group onChange={(e) => handleChange(e)}>
+
+          {valueRange.map((option) => (
+            <Radio key={option} value={option}>
+              {option}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </div>
+      <div className="flex justify-between">
+        {question.minLabel && <span className="mr-4 font-bold">{question.minLabel}</span>}
+        {question.maxLabel && <span className="font-bold">{question.maxLabel}</span>}
+      </div>
+
     </>
   );
 };

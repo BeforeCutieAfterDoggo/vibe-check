@@ -41,11 +41,11 @@ const ScaleVisual = ({
                 <p className='font-serif font-bold text-center'>{question.question}</p>
                 <div className="flex h-3/4 justify-center items-center mx-10 flex-col">
                     <div className='flex justify-between w-full'>
-                        <p className='font-mono text-xl justify-start'>{minLabel}</p>
+                        <p className='mr-4 font-mono text-xl justify-start'>{minLabel}</p>
                         <div className='flex'>
                             <p className='font-mono text-5xl'>{average * 5}</p>/5
                         </div>
-                        <p className='font-mono text-xl justify-end'>{maxLabel}</p>
+                        <p className='ml-4 font-mono text-xl justify-end'>{maxLabel}</p>
 
                     </div>
 

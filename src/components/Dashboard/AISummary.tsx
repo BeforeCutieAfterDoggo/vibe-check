@@ -29,7 +29,7 @@ const AISummary = () => {
   };
 
   return (
-    <div className="mx-auto p-4 bg-white rounded-md shadow-md border-2 border-black">
+    <div className="mb-6 mx-auto p-4 bg-white rounded-md shadow-md border-2 border-black">
       <h1 className="text-lg font-bold mb-4 font-serif">AI Summary</h1>
       <div
         style={{
@@ -38,29 +38,29 @@ const AISummary = () => {
       >
         {summary}
       </div>
-      <Space>
-        <Button
-          className="mt-2 bg-black text-white"
-          onClick={() => generateSummary("perky")}
-          loading={generatingSummary}
-        >
-          Generate Perky Summary
-        </Button>
-        <Button
-          className="mt-2 bg-black text-white"
-          onClick={() => generateSummary("cool")}
-          loading={generatingSummary}
-        >
-          Generate Cool Summary
-        </Button>
-        <Button
-          className="mt-2 bg-black text-white"
-          onClick={() => generateSummary("snarky")}
-          loading={generatingSummary}
-        >
-          Generate Snarky Summary
-        </Button>
-      </Space>
+      <div className="flex justify-center md:gap-x-4 lg:gap-x-10  flex-col md:flex-row">
+          <Button
+            className="mt-2  bg-black text-white"
+            onClick={() => generateSummary("perky")}
+            loading={generatingSummary}
+          >
+            Generate Perky Summary
+          </Button>
+          <Button
+            className="mt-2 bg-black text-white"
+            onClick={() => generateSummary("cool")}
+            loading={generatingSummary}
+          >
+            Generate Cool Summary
+          </Button>
+          <Button
+            className="mt-2 bg-black text-white"
+            onClick={() => generateSummary("snarky")}
+            loading={generatingSummary}
+          >
+            Generate Snarky Summary
+          </Button>
+      </div>
     </div>
   );
 };

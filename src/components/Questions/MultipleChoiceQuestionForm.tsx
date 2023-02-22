@@ -9,14 +9,14 @@ import { QuestionType } from "../../types";
 
 export default function MultipleChoiceQuestionForm() {
   const [data, setData] = useState({
-    choices: [],
+    choices: [] as string[],
   });
   const sessionInfo = useContext(SessionContext);
-  const tags = data.choices;
+  const tags = data.choices as string[];
   const [questionText, setQuestionText] = React.useState("");
 
   const [inputVisible, setInputVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
   const inputRef = useRef<InputRef>(null);
 
   const [allowOther, setAllowOther] = useState(false);

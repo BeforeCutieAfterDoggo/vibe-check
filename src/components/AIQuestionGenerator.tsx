@@ -2,7 +2,7 @@ import React from "react";
 import useQuestions from "../hooks/useQuestions";
 
 const AIQuestionGenerator = () => {
-  const [questions] = useQuestions();
+  // const [questions] = useQuestions();
   return <div>AIQuestionGenerator</div>;
 };
 

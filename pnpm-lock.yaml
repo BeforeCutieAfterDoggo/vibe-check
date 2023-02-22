@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^5.0.1
   '@nivo/bar': ^0.80.0
   '@nivo/core': ^0.80.0
   '@nivo/radar': ^0.80.0
@@ -39,6 +40,7 @@ specifiers:
   wordcloud: ^1.2.2
 
 dependencies:
+  '@ant-design/icons': 5.0.1_biqbaboplfbrettd7655fr4n2y
   '@nivo/bar': 0.80.0_6zomopewppbkd5eeu2nbbcio3i
   '@nivo/core': 0.80.0_g5kln477lwx3caqucf3exzf3du
   '@nivo/radar': 0.80.0_6zomopewppbkd5eeu2nbbcio3i

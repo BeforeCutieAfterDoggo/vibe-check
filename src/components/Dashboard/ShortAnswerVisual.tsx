@@ -14,7 +14,7 @@ const ShortAnswerVisual = ({
 
     );
     const response = answers?.map(answer => answer.response.text);
-    const newData = response?.map((item: any) => {
+    const newData: any = response?.map((item: any) => {
         return { value: item, count: 1 }
     })
 

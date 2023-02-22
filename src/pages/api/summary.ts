@@ -33,7 +33,7 @@ const multipleChoiceCounter = (answers: Answer[]) => {
   answers.forEach((a) => {
     const { response } = a;
     if (response.options) {
-      response.options.forEach((o) => {
+      response.options.forEach((o:any) => {
         if (counter[o]) {
           counter[o] += 1;
         } else {

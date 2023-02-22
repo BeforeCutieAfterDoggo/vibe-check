@@ -16,7 +16,8 @@ const questionComponentMap = {
 const QuestionCard = ({
   question,
 }: {
-  question: QueryDocumentSnapshot<DocumentData>;
+  // question: QueryDocumentSnapshot<DocumentData>;
+  question: any;
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});

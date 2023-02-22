@@ -14,7 +14,7 @@ export default function Explore() {
     return { ...doc.data(), sessionId: doc.id };
   });
   console.log(allSessions);
-  const fuse = new Fuse(allSessions, {
+  const fuse = new Fuse(allSessions!, {
     keys: ["sessionName", "description"],
     // threshold: 0.3,
   });

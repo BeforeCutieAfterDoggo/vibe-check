@@ -1,4 +1,4 @@
-import { Checkbox, Input, Radio } from "antd";
+import { Checkbox, Input, Radio, Space } from "antd";
 import React from "react";
 import { ScaleQuestion } from "../../types";
 
@@ -23,7 +23,6 @@ const ScaleQuestionView = ({
   };
   return (
     <>
-      <p>Scale</p>
       <Radio.Group onChange={(e) => handleChange(e)}>
         {valueRange.map((option) => (
           <Radio key={option} value={option}>
@@ -31,6 +30,11 @@ const ScaleQuestionView = ({
           </Radio>
         ))}
       </Radio.Group>
+      <br />
+      <Space>
+        {question.minLabel && <span>{question.minLabel}</span>}
+        {question.maxLabel && <span>{question.maxLabel}</span>}
+      </Space>
     </>
   );
 };

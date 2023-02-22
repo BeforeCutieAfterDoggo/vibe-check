@@ -1,16 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import type { InputRef } from "antd";
+import { Button, Checkbox, InputRef } from "antd";
 import { Input, Tag, theme } from "antd";
+import axios from "axios";
+import { handleAxiosError } from "../../lib/fetcher";
+import { SessionContext } from "../../providers/SessionProvider";
+import { QuestionType } from "../../types";
 
 export default function MultipleChoiceQuestionForm() {
   const [data, setData] = useState({
-    channels: ["Tag 1", "Tag 2", "Tag 3"],
+    choices: [],
   });
-  const tags = data.channels;
+  const sessionInfo = useContext(SessionContext);
+  const tags = data.choices;
+  const [questionText, setQuestionText] = React.useState("");
+
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<InputRef>(null);
+
+  const [allowOther, setAllowOther] = useState(false);
+
+  const handleSubmit = async (e: any) => {
+    if (!sessionInfo) return;
+    e.preventDefault();
+    try {
+      await axios.post("/api/question", {
+        sessionId: sessionInfo.session.id,
+        type: QuestionType.MULTIPLE_CHOICE,
+        text: questionText,
+        options: tags,
+        allowOther,
+      });
+      setQuestionText("");
+    } catch (error) {
+      handleAxiosError(error);
+    }
+  };
 
   useEffect(() => {
     if (inputVisible) {
@@ -20,7 +46,7 @@ export default function MultipleChoiceQuestionForm() {
 
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter((tag: string) => tag !== removedTag);
-    setData({ ...data, channels: newTags });
+    setData({ ...data, choices: newTags });
   };
 
   const showInput = () => {
@@ -33,7 +59,7 @@ export default function MultipleChoiceQuestionForm() {
 
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
-      setData({ ...data, channels: [...tags, inputValue] });
+      setData({ ...data, choices: [...tags, inputValue] });
     }
     setInputVisible(false);
     setInputValue("");
@@ -66,7 +92,13 @@ export default function MultipleChoiceQuestionForm() {
   // };
 
   return (
-    <>
+    <div>
+      <label htmlFor="">Question text:</label>
+      <Input
+        value={questionText}
+        onChange={(e) => setQuestionText(e.target.value)}
+      />
+      <label htmlFor="">Choices:</label>
       <div style={{ marginBottom: 16 }}>{tagChild}</div>
       {inputVisible ? (
         <Input
@@ -80,11 +112,19 @@ export default function MultipleChoiceQuestionForm() {
           onPressEnter={handleInputConfirm}
         />
       ) : (
-        <Tag onClick={showInput} >
+        <Tag onClick={showInput}>
           <PlusOutlined /> Add
         </Tag>
       )}
-    </>
+      <br />
+      <label htmlFor="">Allow Other?</label>
+      <Checkbox
+        checked={allowOther}
+        onChange={() => setAllowOther(!allowOther)}
+      />
+      <Button className="mt-2 bg-black text-white" onClick={handleSubmit}>
+        Submit
+      </Button>
+    </div>
   );
-};
-
+}

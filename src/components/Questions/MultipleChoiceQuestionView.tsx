@@ -15,6 +15,7 @@ const MultipleChoiceQuestionView = ({
   const [otherText, setOtherText] = React.useState("");
   const [otherChecked, setOtherChecked] = React.useState(false);
   const handleChange = (checkedValues: CheckboxValueType[]) => {
+    console.log("checked = ", checkedValues);
     setResponse({
       ...response,
       options: checkedValues,
@@ -31,20 +32,23 @@ const MultipleChoiceQuestionView = ({
   };
   return (
     <>
-      <Checkbox.Group   onChange={handleChange} />
-      <Space direction="vertical">
-        {question.options.map((option:any) => (
-          <Checkbox value={option}>{option}</Checkbox>
-        ))}
-      </Space>
-      {question.allowOther && (
-        <div>
-          <Checkbox value="other"  checked={otherText !== ""}>
-            Other
-          </Checkbox>
-          <Input value={otherText} onChange={(e) => handleOtherChange(e)} />
-        </div>
-      )}
+      <Checkbox.Group onChange={handleChange}>
+        <Space direction="vertical">
+          {question.options.map((option: any, idx) => (
+            <Checkbox value={option} key={idx}>
+              {option}
+            </Checkbox>
+          ))}
+        </Space>
+        {question.allowOther && (
+          <div>
+            <Checkbox value="other" checked={otherText !== ""}>
+              Other
+            </Checkbox>
+            <Input value={otherText} onChange={(e) => handleOtherChange(e)} />
+          </div>
+        )}
+      </Checkbox.Group>
     </>
   );
 };

@@ -23,13 +23,14 @@ const MultipleChoiceQuestionView = ({
   };
 
   const handleOtherChange = (e: any) => {
-    console.log("here");
+    console.log("here", e.target.value);
+    setOtherChecked(e.target.value !== "");
+    setOtherText(e.target.value);
     setResponse({
       ...response,
       other: e.target.value,
     });
-    setOtherChecked(e.target.value !== "");
-    setOtherText(e.target.value);
+
   };
   return (
     <>
@@ -41,15 +42,16 @@ const MultipleChoiceQuestionView = ({
             </Checkbox>
           ))}
         </Space>
-        {question.allowOther && (
-          <div>
-            <Checkbox value="other" checked={otherText !== ""}>
-              Other
-            </Checkbox>
-            <Input value={otherText} onChange={(e) => handleOtherChange(e)} />
-          </div>
-        )}
       </Checkbox.Group>
+
+      {question.allowOther && (
+        <div>
+          <Checkbox value="other" checked={otherChecked}>
+            Other
+          </Checkbox>
+          <Input value={otherText} onChange={(e) => handleOtherChange(e)} />
+        </div>
+      )}
     </>
   );
 };

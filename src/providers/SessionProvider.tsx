@@ -20,6 +20,7 @@ const SessionProvider = ({
   const [session] = useSession(sessionId);
   const [questions] = useQuestions(session?.id);
   const [answers] = useAnswers(session?.id);
+  console.log("allAnswers111", answers)
 
   return (
     <SessionContext.Provider

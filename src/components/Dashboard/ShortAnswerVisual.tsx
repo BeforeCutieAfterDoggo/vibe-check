@@ -1,12 +1,22 @@
 import React from 'react';
 import { TagCloud } from 'react-tagcloud'
-
+import { useContext, useState } from "react";
+import { SessionContext } from "../../providers/SessionProvider";
 const ShortAnswerVisual = ({
     question
 }: {
     question: any;
 }) => {
-    const data = question.answers;
+
+    const session = useContext(SessionContext);
+    const answers = session?.answers.filter(
+        (answer) => answer.questionId === question.id
+
+    );
+    const response = answers?.map(answer => answer.response.text);
+    const newData = response?.map((item: any) => {
+        return { value: item, count: 1 }
+    })
 
 
     return (
@@ -17,7 +27,7 @@ const ShortAnswerVisual = ({
                     <TagCloud
                         minSize={12}
                         maxSize={35}
-                        tags={data}
+                        tags={newData}
                     />
                 </div>
             </div>

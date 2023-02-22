@@ -23,12 +23,13 @@ const MultipleChoiceQuestionView = ({
   };
 
   const handleOtherChange = (e: any) => {
-    setOtherChecked(e.target.value !== "");
-    setOtherText(e.target.value);
+    console.log("here");
     setResponse({
       ...response,
       other: e.target.value,
     });
+    setOtherChecked(e.target.value !== "");
+    setOtherText(e.target.value);
   };
   return (
     <>

@@ -20,7 +20,7 @@ const CreateSessionPage = () => {
       setSessionName("");
       setDescription("");
       console.log("id", id);
-      router.push(`sessions/${id.data.sessionId}/admin`);
+      router.push(`sessions/${id.data.sessionId}`);
     } catch (error) {
       handleAxiosError(error);
     }

@@ -58,13 +58,16 @@ const QuestionCard = ({
       handleAxiosError(error);
     }
   };
-  const QuestionComponent = questionComponentMap[question.type];
-
+  const QuestionComponent = questionComponentMap[question.type as QuestionType];
 
   return (
     <div className="max-w-sm mx-auto p-4 bg-white rounded-md shadow-md border border-2 border-black">
       <h1 className="text-3xl font-bold mb-4 font-serif">{question.text}</h1>
-      <QuestionComponent question={question} response={response} setResponse={setResponse} />
+      <QuestionComponent
+        question={question as never}
+        response={response}
+        setResponse={setResponse}
+      />
 
       <div className="flex items-center justify-between mt-4">
         <button
@@ -84,9 +87,6 @@ const QuestionCard = ({
       </div>
     </div>
   );
-
-
-
 };
 
 export default QuestionCard;

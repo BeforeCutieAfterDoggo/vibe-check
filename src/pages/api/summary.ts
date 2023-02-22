@@ -1,16 +1,25 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { firestoreAdmin } from "../../lib/firebaseAdmin";
 import { Answer, Question } from "../../types";
 import { OpenAIApi, Configuration } from "openai";
 
-const promptFn = (formatted: string) => {
+export type JudgePersonality = "perky" | "cool" | "snarky";
+
+const personalityMap: Record<JudgePersonality, string> = {
+  perky:
+    "You are the happy, perky, enthusiastic judge. You are generally optimistic and speak gleefully, and call people sweethearts and dearies",
+  cool: "You are the cool, calm, collected judge. Everything you say is smooth, slick, and maximally vibratious",
+  snarky:
+    "You are the snarky, tough love judge. You are a bit of a curmudgeon and say things in a grumpy way, but you have a heart of gold and want the best for everyone",
+};
+
+const promptFn = (formatted: string, personality: string) => {
   return `You are powering an app called 'VibeCheck'. This is an anonymous social survey app which is intended to run a handful of questions to get the vibe of a group. There are three types of question: [short-answer], [scale], [multiple-choice].
 
 Here are the results of the questions:
 
 ${formatted}
 
-Your job is to summarize the community in a paragraph. Your tone should be cool, a bit snarky, a bit loving, and prescient. When you are done summarizing, please write: endofsummary.`;
+${personality}. It is VERY IMPORTANT you answer in character. Your job is to summarize the community in a paragraph. When you are done summarizing, please write: endofsummary.`;
 };
 
 const scaleAverage = (answers: Answer[]) => {
@@ -79,23 +88,21 @@ A${i}: ${formattedAnswer}`;
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const { questions, answers } = req.body;
+      const { questions, answers, personalityType } = req.body;
       const config = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
       });
       const openai = new OpenAIApi(config);
       const formatted = questionFormatter(questions, answers);
-      const prompt = promptFn(formatted);
-      console.log(prompt);
-
-      const response = await openai.createCompletion({
-        prompt,
+      const prompt = promptFn(formatted, personalityMap[personalityType]);
+      const completion = await openai.createCompletion({
+        prompt: prompt,
         max_tokens: 1200,
         temperature: 0.8,
         model: "text-davinci-003",
         stop: ["endofsummary", "Endofsummary", "ENDOFSUMMARY"],
       });
-      const summary = response.data.choices[0].text?.trimStart();
+      const summary = completion.data.choices[0].text?.trimStart();
       res.status(200).json({ summary });
     } catch (error) {
       console.error(error);

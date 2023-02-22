@@ -1,7 +1,8 @@
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import axios from "axios";
 import React, { useContext } from "react";
 import { handleAxiosError } from "../../lib/fetcher";
+import { JudgePersonality } from "../../pages/api/summary";
 import { SessionContext } from "../../providers/SessionProvider";
 
 const AISummary = () => {
@@ -10,16 +11,14 @@ const AISummary = () => {
   const [generatingSummary, setGeneratingSummary] = React.useState(false);
   const [summary, setSummary] = React.useState("");
 
-  const generateSummary = async () => {
+  const generateSummary = async (personalityType: JudgePersonality) => {
     setGeneratingSummary(true);
     try {
       if (!questions || !answers) return;
-      console.log("generate summary");
-      console.log("questions", questions);
-      console.log("answers", answers);
       const response = await axios.post("/api/summary", {
         questions,
         answers,
+        personalityType,
       });
       console.log(response);
       setSummary(response.data.summary);
@@ -39,13 +38,29 @@ const AISummary = () => {
       >
         {summary}
       </div>
-      <Button
-        className="mt-2 bg-black text-white"
-        onClick={generateSummary}
-        loading={generatingSummary}
-      >
-        Generate Summary
-      </Button>
+      <Space>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={() => generateSummary("perky")}
+          loading={generatingSummary}
+        >
+          Generate Perky Summary
+        </Button>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={() => generateSummary("cool")}
+          loading={generatingSummary}
+        >
+          Generate Cool Summary
+        </Button>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={() => generateSummary("snarky")}
+          loading={generatingSummary}
+        >
+          Generate Snarky Summary
+        </Button>
+      </Space>
     </div>
   );
 };

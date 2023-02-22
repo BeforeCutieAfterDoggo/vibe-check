@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { getUnansweredQuestions } from "../../lib/questions";
+import { AnonymousUserContext } from "../../providers/AnonymousUserProvider";
 import { SessionContext } from "../../providers/SessionProvider";
 import QuestionCard from "./QuestionCard";
 
 const AllQuestionsView = () => {
+  const user = useContext(AnonymousUserContext);
   const session = useContext(SessionContext);
+  console.log(session);
   const unansweredQuestions =
-    session && getUnansweredQuestions(session.questions, session.answers);
+    session &&
+    getUnansweredQuestions(user?.uid, session.questions, session.answers);
   console.log("unansweredQuestions", unansweredQuestions);
   return (
     <>

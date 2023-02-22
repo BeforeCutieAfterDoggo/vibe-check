@@ -5,11 +5,9 @@ import { firestore } from "../lib/firebase";
 import { AnonymousUserContext } from "../providers/AnonymousUserProvider";
 
 const useAnswers = (sessionId: string) => {
-  const user = useContext(AnonymousUserContext);
   const q = query(
     collection(firestore, "answers"),
-    where("sessionId", "==", sessionId || "xxxxxx"),
-    where("userId", "==", user?.uid || "xxxxxx")
+    where("sessionId", "==", sessionId || "xxxxxx")
   );
   return useCollectionData(q);
 };

@@ -9,7 +9,7 @@ const ScaleVisual = ({
     question: any;
 }) => {
     const session = useContext(SessionContext);
-    const answers = session?.answers.filter(
+    const answers = session?.answers?.filter(
         (answer) => answer.questionId === question.id
 
     );

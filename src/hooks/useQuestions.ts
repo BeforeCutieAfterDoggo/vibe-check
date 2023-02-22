@@ -24,7 +24,7 @@ const postConverter: FirestoreDataConverter<Question> = {
     return {
       ...data,
       id: snapshot.id,
-    };
+    } as Question;
   },
 };
 
@@ -34,7 +34,7 @@ const useQuestions = (sessionId: string) => {
     collection(firestore, "questions"),
     where("sessionId", "==", sessionId || "xxxxxx")
   );
-  return useCollectionData(q.withConverter(postConverter))
+  return useCollectionData(q.withConverter(postConverter));
 };
 
 export default useQuestions;

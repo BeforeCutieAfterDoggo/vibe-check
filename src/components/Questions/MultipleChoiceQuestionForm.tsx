@@ -26,7 +26,7 @@ export default function MultipleChoiceQuestionForm() {
     e.preventDefault();
     try {
       await axios.post("/api/question", {
-        sessionId: sessionInfo.session.id,
+        sessionId: sessionInfo.session?.id,
         type: QuestionType.MULTIPLE_CHOICE,
         text: questionText,
         options: tags,

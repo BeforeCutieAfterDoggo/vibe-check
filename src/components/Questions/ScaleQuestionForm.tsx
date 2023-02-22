@@ -17,7 +17,7 @@ const ScaleQuestionForm = () => {
     e.preventDefault();
     try {
       await axios.post("/api/question", {
-        sessionId: sessionInfo.session.id,
+        sessionId: sessionInfo.session?.id,
         type: QuestionType.SCALE,
         text: questionText,
         min: 1,

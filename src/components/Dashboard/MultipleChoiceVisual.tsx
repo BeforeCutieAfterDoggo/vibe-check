@@ -1,37 +1,32 @@
-
 import React from "react";
-import { ResponsiveRadar } from '@nivo/radar'
+import { ResponsiveRadar } from "@nivo/radar";
 import { useContext, useState } from "react";
 import { SessionContext } from "../../providers/SessionProvider";
-import { Modal, Button, List } from 'antd';
+import { Modal, Button, List } from "antd";
 import MCModal from "./MCModal";
-const MultipleChoiceVisual = ({
-    question,
-}: {
-    question: any;
-}) => {
-
-    const session = useContext(SessionContext);
-    const answers = session?.answers.filter(
-        (answer) => answer.questionId === question.id
-
+const MultipleChoiceVisual = ({ question }: { question: any }) => {
+  const session = useContext(SessionContext);
+  const answers = session?.answers?.filter(
+    (answer) => answer.questionId === question.id
+  );
+  const response = answers?.map((answer) => answer.response.options);
+  const response2 = response?.filter((item: any) => item !== undefined);
+  const flatten = response2?.flat();
+  const data = flatten?.reduce((accumulator, currentValue) => {
+    const existingItem = accumulator.find(
+      (item: any) => item.choice === currentValue
     );
-    const response = answers?.map(answer => answer.response.options);
-    const response2 = response?.filter((item: any) => item !== undefined);
-    const flatten = response2?.flat();
-    const data = flatten?.reduce((accumulator, currentValue) => {
-        const existingItem = accumulator.find((item: any) => item.choice === currentValue);
-        if (existingItem) {
-            existingItem.count++;
-        } else {
-            accumulator.push({ choice: currentValue, count: 1 });
-        }
-        return accumulator;
-    }, []);
+    if (existingItem) {
+      existingItem.count++;
+    } else {
+      accumulator.push({ choice: currentValue, count: 1 });
+    }
+    return accumulator;
+  }, []);
 
-    const others = answers?.map(answer => answer.response.other);
-    const others2 = others?.filter((item: any) => item !== undefined);
-    console.log("answers-MC", others2)
+  const others = answers?.map((answer) => answer.response.other);
+  const others2 = others?.filter((item: any) => item !== undefined);
+  console.log("answers-MC", others2);
 
     return (
         <>
@@ -86,5 +81,3 @@ const MultipleChoiceVisual = ({
 
 }
 export default MultipleChoiceVisual;
-
-

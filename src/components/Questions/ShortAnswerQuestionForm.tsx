@@ -14,7 +14,7 @@ export default function ShortAnswerQuestionForm() {
     e.preventDefault();
     try {
       await axios.post("/api/question", {
-        sessionId: sessionInfo.session.id,
+        sessionId: sessionInfo.session?.id,
         type: QuestionType.SHORT_ANSWER,
         text: questionText,
       });

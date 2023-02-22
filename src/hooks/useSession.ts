@@ -22,7 +22,7 @@ const postConverter: FirestoreDataConverter<Session> = {
     return {
       ...data,
       id: snapshot.id,
-    };
+    } as Session;
   },
 };
 

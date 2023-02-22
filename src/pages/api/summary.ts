@@ -33,7 +33,7 @@ const multipleChoiceCounter = (answers: Answer[]) => {
   answers.forEach((a) => {
     const { response } = a;
     if (response.options) {
-      response.options.forEach((o:any) => {
+      response.options.forEach((o: any) => {
         if (counter[o]) {
           counter[o] += 1;
         } else {
@@ -94,7 +94,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
       const openai = new OpenAIApi(config);
       const formatted = questionFormatter(questions, answers);
-      const prompt = promptFn(formatted, personalityMap[personalityType]);
+      const prompt = promptFn(
+        formatted,
+        personalityMap[personalityType as JudgePersonality]
+      );
       const completion = await openai.createCompletion({
         prompt: prompt,
         max_tokens: 1200,

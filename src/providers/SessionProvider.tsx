@@ -6,9 +6,9 @@ import useAnswers from "../hooks/useAnswers";
 
 interface SessionContextType {
   sessionId: string;
-  session: Session;
-  questions: Question[];
-  answers: Answer[];
+  session?: Session;
+  questions?: Question[];
+  answers?: Answer[];
 }
 
 const SessionContext = createContext<SessionContextType | null>(null);
@@ -17,14 +17,15 @@ const SessionProvider = ({
   sessionId,
   children,
 }: PropsWithChildren<{ sessionId: string }>) => {
-  const [session] = useSession(sessionId) 
-  const [questions] = useQuestions(session?.id as string) 
-  const [answers] = useAnswers(session?.id as string)
-  console.log("allAnswers111", answers)
+  const [session] = useSession(sessionId);
+  const [questions] = useQuestions(session?.id as string);
+  const [answers] = useAnswers(session?.id as string);
+  console.log("allAnswers111", answers);
 
   return (
     <SessionContext.Provider
       value={{
+        sessionId,
         session,
         questions,
         answers,

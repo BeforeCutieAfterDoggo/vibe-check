@@ -69,7 +69,7 @@ const VisualCards = () => {
         session.questions.map((question, idx) => (
           <div key={idx}>
             <VisualCard question={question} />
-          </div>
+          </div>      
         ))}
     </div>
   );

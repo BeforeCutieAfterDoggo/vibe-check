@@ -19,7 +19,7 @@ const AllQuestionsView = () => {
       </h1>
       {unansweredQuestions &&
         unansweredQuestions.map((question, idx) => (
-          <div key={idx}>
+          <div  key={idx}>
             <QuestionCard question={question} />;
           </div>
         ))}

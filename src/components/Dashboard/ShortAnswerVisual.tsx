@@ -21,7 +21,7 @@ const ShortAnswerVisual = ({
 
     return (
         <>
-            <div className="h-60">
+            <div className="h-full">
                 <p className='font-serif font-bold text-center'>{question.question}</p>
                 <div className="flex h-3/4 justify-center items-center">
                     <TagCloud

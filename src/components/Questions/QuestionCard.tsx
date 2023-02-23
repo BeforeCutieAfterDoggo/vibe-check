@@ -61,7 +61,7 @@ const QuestionCard = ({
   const QuestionComponent = questionComponentMap[question.type as QuestionType];
 
   return (
-    <div className="max-w-sm mx-auto p-4 bg-white rounded-md shadow-md border border-2 border-black">
+    <div className="max-w-sm mx-4 p-4 bg-white rounded-md shadow-md border border-2 border-black">
       <h1 className="text-3xl font-bold mb-4 font-serif">{question.text}</h1>
       <QuestionComponent
         question={question as never}

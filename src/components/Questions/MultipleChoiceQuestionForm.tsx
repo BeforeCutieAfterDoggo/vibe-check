@@ -92,13 +92,13 @@ export default function MultipleChoiceQuestionForm() {
   // };
 
   return (
-    <div>
-      <label htmlFor="">Question text:</label>
+    <div className="mt-2">
+      <label className="font-bold" htmlFor="">Question text:</label>
       <Input
         value={questionText}
         onChange={(e) => setQuestionText(e.target.value)}
       />
-      <label htmlFor="">Choices:</label>
+      <label htmlFor="" className="font-bold">Choices:</label>
       <div style={{ marginBottom: 16 }}>{tagChild}</div>
       {inputVisible ? (
         <Input
@@ -116,15 +116,18 @@ export default function MultipleChoiceQuestionForm() {
           <PlusOutlined /> Add
         </Tag>
       )}
-      <br />
-      <label htmlFor="">Allow Other?</label>
-      <Checkbox
-        checked={allowOther}
-        onChange={() => setAllowOther(!allowOther)}
-      />
-      <Button className="mt-2 bg-black text-white" onClick={handleSubmit}>
-        Submit
-      </Button>
+      <div className="mt-4">
+        <label htmlFor="" className="mr-2 ">Allow Other?</label>
+        <Checkbox
+          checked={allowOther}
+          onChange={() => setAllowOther(!allowOther)}
+        />
+      </div>
+      <div>
+        <Button className="mt-2 bg-black text-white" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </div>
     </div>
   );
 }

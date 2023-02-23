@@ -24,11 +24,10 @@ ${personality}. It is VERY IMPORTANT you answer in character. Your job is to sum
 
 const scaleAverage = (answers: Answer[]) => {
   const sum = answers.reduce((acc, a) => acc + a.response.value, 0);
-  return sum / answers.length;
+  return parseFloat((sum / answers.length).toFixed(2));
 };
 
 const multipleChoiceCounter = (answers: Answer[]) => {
-  console.log("123", answers);
   const counter: Record<string, number> = {};
   answers.forEach((a) => {
     const { response } = a;
@@ -77,7 +76,9 @@ const questionFormatter = (questions: Question[], answers: Answer[]) => {
   */
 
   const formatted = questions.map((q, i) => {
-    const questionAnswers = answers.filter((a) => a.questionId === q.id);
+    const questionAnswers = answers.filter(
+      (a) => a.questionId === q.id && !a.skipped
+    );
     const formattedAnswer = answerFormatter(q, questionAnswers);
     return `Q${i}: [${q.type}] ${q.text}
 A${i}: ${formattedAnswer}`;

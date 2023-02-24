@@ -89,9 +89,9 @@ A${i}: ${formattedAnswer}`;
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const { questions, answers, personalityType } = req.body;
+      const { questions, answers, personalityType, apiKey } = req.body;
       const config = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey,
       });
       const openai = new OpenAIApi(config);
       const formatted = questionFormatter(questions, answers);

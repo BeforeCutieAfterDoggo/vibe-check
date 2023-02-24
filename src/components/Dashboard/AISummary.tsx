@@ -1,4 +1,4 @@
-import { Button, Space } from "antd";
+import { Button, Input, Space } from "antd";
 import axios from "axios";
 import React, { useContext } from "react";
 import { handleAxiosError } from "../../lib/fetcher";
@@ -10,6 +10,7 @@ const AISummary = () => {
   const { questions, answers } = session || {};
   const [generatingSummary, setGeneratingSummary] = React.useState(false);
   const [summary, setSummary] = React.useState("");
+  const [apiKey, setApiKey] = React.useState("");
 
   const generateSummary = async (personalityType: JudgePersonality) => {
     setGeneratingSummary(true);
@@ -19,6 +20,7 @@ const AISummary = () => {
         questions,
         answers,
         personalityType,
+        apiKey,
       });
       console.log(response);
       setSummary(response.data.summary);
@@ -38,28 +40,34 @@ const AISummary = () => {
       >
         {summary}
       </div>
+      <label className="mt-2">OpenAI API Key</label>
+      <Input
+        value={apiKey}
+        onChange={(e) => setApiKey(e.target.value)}
+        type="password"
+      />
       <div className="flex justify-center md:gap-x-4 lg:gap-x-10  flex-col md:flex-row">
-          <Button
-            className="mt-2  bg-black text-white"
-            onClick={() => generateSummary("perky")}
-            loading={generatingSummary}
-          >
-            Generate Perky Summary
-          </Button>
-          <Button
-            className="mt-2 bg-black text-white"
-            onClick={() => generateSummary("cool")}
-            loading={generatingSummary}
-          >
-            Generate Cool Summary
-          </Button>
-          <Button
-            className="mt-2 bg-black text-white"
-            onClick={() => generateSummary("snarky")}
-            loading={generatingSummary}
-          >
-            Generate Snarky Summary
-          </Button>
+        <Button
+          className="mt-2  bg-black text-white"
+          onClick={() => generateSummary("perky")}
+          loading={generatingSummary}
+        >
+          Generate Perky Summary
+        </Button>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={() => generateSummary("cool")}
+          loading={generatingSummary}
+        >
+          Generate Cool Summary
+        </Button>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={() => generateSummary("snarky")}
+          loading={generatingSummary}
+        >
+          Generate Snarky Summary
+        </Button>
       </div>
     </div>
   );

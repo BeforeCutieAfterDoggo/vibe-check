@@ -49,6 +49,7 @@ export interface Session {
   id: string;
   sessionName: string;
   description: string;
+  password?: string;
   active: boolean;
   questions: QuestionUnion[];
   answers: Answer[];

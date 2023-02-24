@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 const CreateSessionPage = () => {
   const [sessionName, setSessionName] = useState("");
   const [description, setDescription] = useState("");
+  const [sessionPassword, setSessionPassword] = useState("");
   const user = useContext(AnonymousUserContext);
   const router = useRouter();
 
@@ -16,10 +17,14 @@ const CreateSessionPage = () => {
     console.log("Description:", description);
     if (!user) return;
     try {
-      const id = await axios.post("/api/session", { sessionName, description });
+      const id = await axios.post("/api/session", {
+        sessionName,
+        description,
+        password: sessionPassword,
+      });
       setSessionName("");
       setDescription("");
-      console.log("id", id);
+      setSessionPassword("");
       router.push(`sessions/${id.data.sessionId}`);
     } catch (error) {
       handleAxiosError(error);
@@ -77,6 +82,22 @@ const CreateSessionPage = () => {
             onChange={(event) => setDescription(event.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-white font-bold mb-2"
+          >
+            Session Password (Optional)
+          </label>
+          <input
+            id="sessionPassword"
+            name="sessionPassword"
+            value={sessionPassword}
+            onChange={(event) => setSessionPassword(event.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
           />
         </div>
         <div className="flex justify-end space-x-4">

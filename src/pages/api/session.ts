@@ -4,15 +4,17 @@ import { firestoreAdmin } from "../../lib/firebaseAdmin";
 export interface SessionBody {
   sessionName: string;
   description: string;
+  password: string;
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const { sessionName, description } = req.body as SessionBody;
+      const { sessionName, description, password } = req.body as SessionBody;
       const sessionRef = await firestoreAdmin.collection("sessions").add({
         sessionName,
         description,
+        password: password === "" ? undefined : password,
         questions: [],
         answers: [],
         active: false,

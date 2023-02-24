@@ -33,10 +33,11 @@ export default function ShortAnswerQuestionForm() {
       />
       <Button
         className="mt-2 bg-black text-white"
-        onClick={handleSubmit}>
+        onClick={handleSubmit}
+        disabled={!questionText}
+      >
         Submit
       </Button>
     </div>
   );
-};
-
+}

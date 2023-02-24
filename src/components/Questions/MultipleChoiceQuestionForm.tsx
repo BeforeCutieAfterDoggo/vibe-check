@@ -124,7 +124,7 @@ export default function MultipleChoiceQuestionForm() {
         />
       </div>
       <div>
-        <Button className="mt-2 bg-black text-white" onClick={handleSubmit}>
+        <Button className="mt-2 bg-black text-white" onClick={handleSubmit} disabled={!questionText || tags.length === 0}>
           Submit
         </Button>
       </div>

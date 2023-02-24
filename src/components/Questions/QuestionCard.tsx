@@ -21,7 +21,7 @@ const QuestionCard = ({
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});
-  console.log(response);
+  console.log('rrr', response);
   const submitAnswer = async (e: any) => {
     e.preventDefault();
     if (!user) return;
@@ -81,6 +81,7 @@ const QuestionCard = ({
           className="px-4 py-2 text-white bg-black border border-2 border-black rounded-md shadow-sm hover:text-black hover:bg-[#5BFF33]"
           type="submit"
           onClick={(e) => submitAnswer(e)}
+          disabled={Object.keys(response).length === 0}
         >
           Submit
         </button>

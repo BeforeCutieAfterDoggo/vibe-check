@@ -52,7 +52,11 @@ const ScaleQuestionForm = () => {
           value={maxLabel}
           onChange={(e) => setMaxLabel(e.target.value)}
         />
-        <Button className="mt-2 bg-black text-white" onClick={handleSubmit}>
+        <Button
+          className="mt-2 bg-black text-white"
+          onClick={handleSubmit}
+          disabled={!questionText}
+        >
           Submit
         </Button>
       </div>

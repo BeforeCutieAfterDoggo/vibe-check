@@ -7,6 +7,7 @@ import QuestionCard from "./QuestionCard";
 const AllQuestionsView = () => {
   const user = useContext(AnonymousUserContext);
   const session = useContext(SessionContext);
+  console.log('123', session);
   const unansweredQuestions =
     session &&
     getUnansweredQuestions(user?.uid, session.questions, session.answers);

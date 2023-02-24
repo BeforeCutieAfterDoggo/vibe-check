@@ -14,6 +14,7 @@ export interface Question {
   sessionId: string;
   type: QuestionType;
   text: string;
+  createdAt: number;
 }
 
 export interface ScaleQuestion extends Question {
@@ -53,4 +54,5 @@ export interface Session {
   active: boolean;
   questions: QuestionUnion[];
   answers: Answer[];
+  createdAt: number;
 }

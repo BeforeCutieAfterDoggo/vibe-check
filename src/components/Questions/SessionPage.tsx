@@ -15,7 +15,9 @@ const SessionPage = () => {
 
   return (
     <div className="relative">
-      {session.session?.password && !allowed ? (
+      {session.session?.password &&
+      session.session.password == "" &&
+      !allowed ? (
         <SessionPasswordInput setAllowed={setAllowed} />
       ) : (
         <>

@@ -14,10 +14,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const sessionRef = await firestoreAdmin.collection("sessions").add({
         sessionName,
         description,
-        password: password === "" ? undefined : password,
+        password,
         questions: [],
         answers: [],
         active: false,
+        createdAt: new Date(),
       });
       const sessionId = sessionRef.id;
       await firestoreAdmin

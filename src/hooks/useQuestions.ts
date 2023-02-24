@@ -2,6 +2,7 @@ import {
   collection,
   DocumentData,
   FirestoreDataConverter,
+  orderBy,
   query,
   QueryDocumentSnapshot,
   SnapshotOptions,
@@ -32,7 +33,7 @@ const useQuestions = (sessionId: string) => {
   // Get all questions where sessionId === sessionId
   const q = query(
     collection(firestore, "questions"),
-    where("sessionId", "==", sessionId || "xxxxxx")
+    where("sessionId", "==", sessionId || "xxxxxx"),
   );
   return useCollectionData(q.withConverter(postConverter));
 };

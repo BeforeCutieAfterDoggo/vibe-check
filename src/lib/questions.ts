@@ -6,8 +6,13 @@ export const getUnansweredQuestions = (
   questions?: Question[],
   answers?: Answer[]
 ) => {
+
   if (!questions || !answers || !userId) return [];
-  const filteredAnswers = answers.filter((a) => a.userId === userId);
+  const answersArr = [answers];
+  const questionsArr = [questions];
+  console.log("111", answersArr)
+  // console.log("111a", questions)
+  const filteredAnswers = answersArr.filter((a) => a.userId === userId);
   const answeredQuestionIds = filteredAnswers.map((a) => a.questionId);
   const unansweredQuestions = questions
     .filter(

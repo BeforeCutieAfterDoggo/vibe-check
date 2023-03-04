@@ -9,10 +9,10 @@ import {
   where,
   WithFieldValue,
 } from "firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { firestore } from "../lib/firebase";
 import { Question } from "../types";
-
+import { useState, useEffect } from "react";
+import { getDocs } from "firebase/firestore";
 const postConverter: FirestoreDataConverter<Question> = {
   toFirestore(question: WithFieldValue<Question>): DocumentData {
     return { ...question };
@@ -30,12 +30,31 @@ const postConverter: FirestoreDataConverter<Question> = {
 };
 
 const useQuestions = (sessionId: string) => {
-  // Get all questions where sessionId === sessionId
-  const q = query(
-    collection(firestore, "questions"),
-    where("sessionId", "==", sessionId || "xxxxxx"),
-  );
-  return useCollectionData(q.withConverter(postConverter));
+  const [questions, setQuestions] = useState<any>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const q = query(
+        collection(firestore, "questions"),
+        where("sessionId", "==", sessionId || "xxxxxx")
+      );
+      const querySnapshot = await getDocs(q.withConverter(postConverter));
+      const questionsData = querySnapshot.docs.map((doc) => doc.data());
+      setQuestions(questionsData);
+    };
+
+    // Fetch data initially and every 5 seconds
+    fetchData();
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 5000);
+
+
+    // Cleanup the interval when component is unmounted
+    return () => clearInterval(intervalId);
+  }, [sessionId]);
+
+  return questions;
 };
 
 export default useQuestions;

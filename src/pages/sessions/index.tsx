@@ -8,22 +8,20 @@ import Link from "next/link";
 import useSessions from "../../hooks/useSessions";
 export default function Explore() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [sessions] = useSessions();
+  const sessions = useSessions();
 
-  const allSessions = sessions?.docs.map((doc) => {
-    return { ...doc.data(), sessionId: doc.id };
-  });
-  console.log(allSessions);
-  const fuse = new Fuse(allSessions!, {
+
+  console.log(sessions);
+  const fuse = new Fuse(sessions!, {
     keys: ["sessionName", "description"],
     // threshold: 0.3,
   });
   let searchResults = null;
-  if (allSessions) {
+  if (sessions) {
     const results = fuse.search(searchTerm);
     searchResults = searchTerm
       ? results.map((result: any) => result.item)
-      : allSessions;
+      : sessions;
   }
 
   function handleOnSearch({ currentTarget = {} }: any) {
@@ -49,7 +47,7 @@ export default function Explore() {
             Search Group
           </label>
           <div className="mt-10">
-           
+
             <input
               type="search"
               value={searchTerm}
@@ -62,7 +60,7 @@ export default function Explore() {
           </div>
         </form>
 
-        {!allSessions && (
+        {!sessions && (
           <div className="grid gap-y-10 md:grid-cols-2 md:gap-x-10 lg:grid-cols-3 lg:gap-x-10 xl:grid-cols-4 xl:gap-x-10 grid-cols-1 pt-10 px-10 ">
             <Skeleton active />
             <Skeleton active />
@@ -79,7 +77,7 @@ export default function Explore() {
           </div>
         )}
         <div className=" pb-10 mt-10 grid gap-y-10 md:grid-cols-2 md:gap-x-10 lg:grid-cols-3 lg:gap-x-10 xl:grid-cols-4 xl:gap-x-10 grid-cols-1 pt-10 px-10 ">
-          {allSessions &&
+          {sessions &&
             searchResults &&
             searchResults.map((item: any) => (
               <div

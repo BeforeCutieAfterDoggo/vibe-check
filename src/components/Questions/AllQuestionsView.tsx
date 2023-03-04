@@ -7,10 +7,14 @@ import QuestionCard from "./QuestionCard";
 const AllQuestionsView = () => {
   const user = useContext(AnonymousUserContext);
   const session = useContext(SessionContext);
-  console.log('123', session);
+  console.log("user", user?.uid, session?.questions, session?.answers);
+
+  console.log("ses111", session);
   const unansweredQuestions =
     session &&
     getUnansweredQuestions(user?.uid, session.questions, session.answers);
+  console.log("unansweredQuestions", unansweredQuestions);
+  console.log("ses222", unansweredQuestions);
   return (
     <>
       <h1 className="text-center text-white italic underline decoration-wavy decoration-4 tracking-wide font-bold  text-3xl font-serif py-10 ">

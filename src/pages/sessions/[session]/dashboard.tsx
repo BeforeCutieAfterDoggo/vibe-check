@@ -10,9 +10,6 @@ const Dashboard: React.FC = () => {
   const router = useRouter();
   const link = router.asPath;
   const result = link.slice(0, link.lastIndexOf('/'));
-
-  console.log("vibe", result)
-
   return (
     <SessionProvider sessionId={router.query.session as string}>
       <div className="bg-[url('/images/bg.png')] bg-fixed bg-center bg-cover ">

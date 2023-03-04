@@ -8,6 +8,7 @@ import {
   SnapshotOptions,
   where,
   WithFieldValue,
+  onSnapshot,
 } from "firebase/firestore";
 import { firestore } from "../lib/firebase";
 import { Question } from "../types";
@@ -33,28 +34,20 @@ const useQuestions = (sessionId: string) => {
   const [questions, setQuestions] = useState<any>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const q = query(
-        collection(firestore, "questions"),
-        where("sessionId", "==", sessionId || "xxxxxx")
-      );
-      const querySnapshot = await getDocs(q.withConverter(postConverter));
+    const q = query(
+      collection(firestore, "questions"),
+      where("sessionId", "==", sessionId || "xxxxxx")
+    );
+    const unsubscribe = onSnapshot(q.withConverter(postConverter), (querySnapshot) => {
       const questionsData = querySnapshot.docs.map((doc) => doc.data());
       setQuestions(questionsData);
-    };
-
-    // Fetch data initially and every 5 seconds
-    fetchData();
-    const intervalId = setInterval(() => {
-      fetchData();
-    }, 5000);
-
-
-    // Cleanup the interval when component is unmounted
-    return () => clearInterval(intervalId);
+    });
+    // Cleanup the listener when component is unmounted
+    return () => unsubscribe();
   }, [sessionId]);
 
   return questions;
 };
+
 
 export default useQuestions;

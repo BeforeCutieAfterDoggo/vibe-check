@@ -14,7 +14,6 @@ const TestPage = () => {
   };
   const testSessionId = "vcr2hIUm5SNwYrMP8yDz";
   const [session] = useSession(testSessionId);
-  console.log(session);
   return (
     <div>
       <h1>Test Page</h1>

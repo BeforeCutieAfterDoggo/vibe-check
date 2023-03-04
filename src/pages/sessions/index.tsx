@@ -9,9 +9,6 @@ import useSessions from "../../hooks/useSessions";
 export default function Explore() {
   const [searchTerm, setSearchTerm] = useState("");
   const sessions = useSessions();
-
-
-  console.log(sessions);
   const fuse = new Fuse(sessions!, {
     keys: ["sessionName", "description"],
     // threshold: 0.3,

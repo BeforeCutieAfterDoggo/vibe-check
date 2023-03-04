@@ -4,7 +4,6 @@ import { firestoreAdmin } from "../../lib/firebaseAdmin";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      console.log(req.body);
       await firestoreAdmin.collection("questions").add({
         ...req.body,
         createdAt: new Date(),

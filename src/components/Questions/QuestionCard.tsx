@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { handleAxiosError } from "../../lib/fetcher";
 import { AnonymousUserContext } from "../../providers/AnonymousUserProvider";
 import { QuestionType } from "../../types";
@@ -21,7 +21,6 @@ const QuestionCard = ({
 }) => {
   const user = useContext(AnonymousUserContext);
   const [response, setResponse] = useState({});
-  console.log('rrr', response);
   const submitAnswer = async (e: any) => {
     e.preventDefault();
     if (!user) return;
@@ -40,6 +39,8 @@ const QuestionCard = ({
       handleAxiosError(error);
     }
   };
+  // useEffect(() => {
+  // }, [response]);
 
   const skipQuestion = async (e: any) => {
     e.preventDefault();
@@ -61,6 +62,7 @@ const QuestionCard = ({
   const QuestionComponent = questionComponentMap[question.type as QuestionType];
 
   return (
+    // <></>
     <div className="max-w-md mx-4 sm:mx-auto p-4 bg-white rounded-md shadow-md border border-2 border-black">
       <h1 className="text-3xl font-bold mb-4 font-serif">{question.text}</h1>
       <QuestionComponent

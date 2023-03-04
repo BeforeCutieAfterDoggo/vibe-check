@@ -3,8 +3,6 @@ import { Modal, Button, List } from 'antd';
 
 const ScaleModal = (data: any) => {
     const [visible, setVisible] = useState(false);
-    console.log("dataSM", data.data)
-
     const handleShowModal = () => {
         setVisible(true);
     };

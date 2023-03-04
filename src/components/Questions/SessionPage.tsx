@@ -8,16 +8,15 @@ import SubmitQuestion from "./SubmitQuestion";
 const SessionPage = () => {
   const [allowed, setAllowed] = useState(false);
   const session = useContext(SessionContext);
-
   if (!session?.session) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="relative">
-      {session.session?.password &&
-      session.session.password == "" &&
-      !allowed ? (
+      {(session.session?.password &&
+        session.session.password !== "" &&
+        !allowed) ? (
         <SessionPasswordInput setAllowed={setAllowed} />
       ) : (
         <>

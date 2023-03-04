@@ -3,7 +3,6 @@ import { Modal, Button, List } from 'antd';
 
 const MCModal = ( data:any ) => {
   const [visible, setVisible] = useState(false);
-  console.log("data", data.others)
 
   const handleShowModal = () => {
     setVisible(true);

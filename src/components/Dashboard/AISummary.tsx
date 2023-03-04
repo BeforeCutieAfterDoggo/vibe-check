@@ -22,7 +22,6 @@ const AISummary = () => {
         personalityType,
         apiKey,
       });
-      console.log(response);
       setSummary(response.data.summary);
     } catch (error) {
       handleAxiosError(error);

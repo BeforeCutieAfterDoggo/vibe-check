@@ -15,7 +15,6 @@ const MultipleChoiceQuestionView = ({
   const [otherText, setOtherText] = React.useState("");
   const [otherChecked, setOtherChecked] = React.useState(false);
   const handleChange = (checkedValues: CheckboxValueType[]) => {
-    console.log("checked = ", checkedValues);
     setResponse({
       ...response,
       options: checkedValues,
@@ -23,7 +22,6 @@ const MultipleChoiceQuestionView = ({
   };
 
   const handleOtherChange = (e: any) => {
-    console.log("here", e.target.value);
     setOtherChecked(e.target.value !== "");
     setOtherText(e.target.value);
     setResponse({

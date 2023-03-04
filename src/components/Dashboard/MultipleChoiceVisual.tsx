@@ -26,8 +26,6 @@ const MultipleChoiceVisual = ({ question }: { question: any }) => {
 
   const others = answers?.map((answer) => answer.response.other);
   const others2 = others?.filter((item: any) => item !== undefined);
-  console.log("answers-MC", others2);
-
     return (
         <>
             <div className="h-48">

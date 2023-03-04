@@ -20,7 +20,7 @@ const ScaleQuestionView = ({
       text: e.target.value,
     });
   };
-  return <Input value={text} onChange={(e) => handleChange(e)} />;
+  return <Input value={response.text} onChange={(e) => handleChange(e)} />;
 };
 
 export default ScaleQuestionView;

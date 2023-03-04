@@ -17,6 +17,7 @@ export default function ShortAnswerQuestionForm() {
         sessionId: sessionInfo.session?.id,
         type: QuestionType.SHORT_ANSWER,
         text: questionText,
+        
       });
       setQuestionText("");
     } catch (error) {

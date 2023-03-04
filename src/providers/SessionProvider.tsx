@@ -18,10 +18,8 @@ const SessionProvider = ({
   children,
 }: PropsWithChildren<{ sessionId: string }>) => {
   const [session] = useSession(sessionId);
-  const [questions] = useQuestions(session?.id as string);
-  const [answers] = useAnswers(session?.id as string);
-  console.log("allAnswers111", answers);
-
+  const questions = useQuestions(session?.id as string) || [];
+  const answers = useAnswers(session?.id as string) || [];
   return (
     <SessionContext.Provider
       value={{

@@ -3,7 +3,6 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 export default function GroupCard(props: any) {
   const { item } = props;
-  console.log(item);
   return (
     <>
       <Link href={`/sessions/${item.sessionId}`}>

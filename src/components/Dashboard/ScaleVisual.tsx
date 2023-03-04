@@ -12,8 +12,6 @@ const ScaleVisual = ({ question }: { question: any }) => {
   const maxLabel = question?.maxLabel;
   const minLabel = question?.minLabel;
 
-  console.log("Scale", maxLabel, minLabel);
-
   const detailedAnswers = response?.reduce((accumulator, currentValue) => {
     const existingItem = accumulator.find(
       (item: any) => item.choice === currentValue
@@ -25,11 +23,9 @@ const ScaleVisual = ({ question }: { question: any }) => {
     }
     return accumulator;
   }, []);
-  console.log("detailedAnswers", detailedAnswers);
 
   const average =
     response?.reduce((a: any, b: any) => a + b, 0) / response?.length! / 5;
-  console.log("average", average);
 
   return (
     <>

@@ -13,8 +13,6 @@ const CreateSessionPage = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log("Session name:", sessionName);
-    console.log("Description:", description);
     if (!user) return;
     try {
       const id = await axios.post("/api/session", {

@@ -27,7 +27,6 @@ const SubmitQuestion = () => {
   );
   const router = useRouter();
   const link = router.asPath;
-  console.log("dynamicParam", link)
 
 
   return (

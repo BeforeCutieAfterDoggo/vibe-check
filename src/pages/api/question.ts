@@ -7,7 +7,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       await firestoreAdmin.collection("questions").add({
         ...req.body,
         createdAt: new Date(),
-      });
+      }).then(docRef => {
+        const questionID = docRef.id;
+        docRef.update({ questionId: questionID });
+      })
       res.status(200).json({ message: "Question created successfully" });
     } catch (error) {
       console.error(error);

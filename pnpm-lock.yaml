@@ -20,6 +20,7 @@ specifiers:
   eslint-config-next: 13.1.6
   firebase: ^9.17.1
   firebase-admin: ^11.5.0
+  first-input-delay: ^0.1.3
   fuse.js: ^6.6.2
   nanoid: ^4.0.1
   next: 13.1.6
@@ -77,6 +78,7 @@ dependencies:
 devDependencies:
   '@types/react-tagcloud': 1.1.7
   autoprefixer: 10.4.13_postcss@8.4.21
+  first-input-delay: 0.1.3
   postcss: 8.4.21
   tailwindcss: 3.2.4_postcss@8.4.21
 
@@ -3093,6 +3095,10 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: false
+
+  /first-input-delay/0.1.3:
+    resolution: {integrity: sha512-hZ1mI+BWYIBr8jlp2bDPnRvnmSICBxpZRwdc0nhiQn2uyMxSKZEBbkO8V0/s26AMeX8p/AD4g09+liRrhXvKKQ==}
+    dev: true
 
   /flat-cache/3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}

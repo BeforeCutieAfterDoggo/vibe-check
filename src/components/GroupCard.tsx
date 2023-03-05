@@ -8,7 +8,7 @@ export default function GroupCard(props: any) {
       <Link href={`/sessions/${item.sessionId}`}>
         <div
           style={{ cursor: "pointer" }}
-          className="max-w-sm rounded-3xl overflow-hidden shadow-lg bg-white"
+          className="max-w-sm rounded-3xl overflow-hidden shadow-lg bg-white border border-2 border-white hover:border-[#5FFF37] rounded-3xl "
         >
           <img
             className="w-full rounded-3xl "

@@ -5,14 +5,12 @@ import { SessionContext } from "../../providers/SessionProvider";
 import { Modal, Button, List } from "antd";
 import MCModal from "./MCModal";
 const MultipleChoiceVisual = ({ question }: { question: any }) => {
-  const session = useContext(SessionContext);
-  const answers = session?.answers?.filter(
-    (answer) => answer.questionId === question.id
-  );
-  const response = answers?.map((answer) => answer.response.options);
+
+  const answers = question?.answers;
+  const response = answers?.map((answer:any) => answer.response.options);
   const response2 = response?.filter((item: any) => item !== undefined);
   const flatten = response2?.flat();
-  const data = flatten?.reduce((accumulator, currentValue) => {
+  const data = flatten?.reduce((accumulator:any, currentValue:any) => {
     const existingItem = accumulator.find(
       (item: any) => item.choice === currentValue
     );
@@ -24,7 +22,7 @@ const MultipleChoiceVisual = ({ question }: { question: any }) => {
     return accumulator;
   }, []);
 
-  const others = answers?.map((answer) => answer.response.other);
+  const others = answers?.map((answer:any) => answer.response.other);
   const others2 = others?.filter((item: any) => item !== undefined);
     return (
         <>

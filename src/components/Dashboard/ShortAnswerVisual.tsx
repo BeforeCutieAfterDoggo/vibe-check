@@ -8,13 +8,9 @@ const ShortAnswerVisual = ({
     question: any;
 }) => {
 
-    const session = useContext(SessionContext);
-    const answers = session?.answers?.filter(
-        (answer) => answer.questionId === question.id
-
-    );
-    const response = answers?.map(answer => answer.response.text);
-    const newData: any = response?.map((item: any) => {
+    const answers =  question?.answers;
+    const responses = answers?.map((answer:any) => answer.response.text);
+    const newData: any = responses?.map((item: any) => {
         return { value: item, count: 1 }
     })
 

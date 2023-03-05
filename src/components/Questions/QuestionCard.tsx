@@ -1,5 +1,4 @@
 import axios from "axios";
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { handleAxiosError } from "../../lib/fetcher";
 import { AnonymousUserContext } from "../../providers/AnonymousUserProvider";
@@ -16,7 +15,6 @@ const questionComponentMap = {
 const QuestionCard = ({
   question,
 }: {
-  // question: QueryDocumentSnapshot<DocumentData>;
   question: any;
 }) => {
   const user = useContext(AnonymousUserContext);
@@ -63,7 +61,7 @@ const QuestionCard = ({
 
   return (
     // <></>
-    <div className="max-w-md mx-4 sm:mx-auto p-4 bg-white rounded-md shadow-md border border-2 border-black">
+    <div className="max-w-md mx-auto p-4 bg-white rounded-md shadow-md border border-2 border-black">
       <h1 className="text-3xl font-bold mb-4 font-serif">{question.text}</h1>
       <QuestionComponent
         question={question as never}

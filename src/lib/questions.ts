@@ -4,18 +4,26 @@ import { Question, Answer } from "../types";
 export const getUnansweredQuestions = (
   userId?: string,
   questions?: Question[],
-  answers?: Answer[]
 ) => {
 
-  if (!questions || !answers || !userId) return [];
+  if (!questions || !userId) return [];
+  let unansweredQuestionIds: any;
+  if (questions) {
+    unansweredQuestionIds = questions.filter(question => {
+      if (question.answers) {
+        return !question.answers.some(answer => answer.userId === userId);
+      } else {
+        return question
+      }
 
-  const filteredAnswers = answers.filter((a) => a.userId === userId);
-  const answeredQuestionIds = filteredAnswers.map((a) => a.questionId);
+    }).map(question => question.questionId);
+  }
   const unansweredQuestions = questions
     .filter(
       (question) =>
-        !answeredQuestionIds.includes(question.id) && question.id !== userId
+        unansweredQuestionIds.includes(question.id)
     )
     .sort((a, b) => a.createdAt - b.createdAt);
+  console.log("yoo", unansweredQuestions)
   return unansweredQuestions;
 };

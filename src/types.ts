@@ -15,6 +15,8 @@ export interface Question {
   type: QuestionType;
   text: string;
   createdAt: number;
+  answers: Answer[];
+  questionId: string;
 }
 
 export interface ScaleQuestion extends Question {

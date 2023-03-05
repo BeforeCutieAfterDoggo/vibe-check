@@ -4,17 +4,15 @@ import { useContext, useState } from "react";
 import { SessionContext } from "../../providers/SessionProvider";
 import ScaleModal from "./ScaleModal";
 const ScaleVisual = ({ question }: { question: any }) => {
-  const session = useContext(SessionContext);
-  const answers = session?.answers?.filter(
-    (answer) => answer.questionId === question.id && !answer.skipped
-  );
-  const response = answers?.map((answer) => answer.response.value);
-  const filteredResponse = response?.filter((item: any) => item !== undefined);
+  const answers = question?.answers;
+  const responses = answers.map((answer:any)=> answer.response).map((obj:any) => obj.value)
+
+  const filteredResponse = responses?.filter((item: any) => item !== undefined);
 
   const maxLabel = question?.maxLabel;
   const minLabel = question?.minLabel;
 
-  const detailedAnswers = filteredResponse?.reduce((accumulator, currentValue) => {
+  const detailedAnswers = filteredResponse?.reduce((accumulator:any, currentValue:any) => {
     const existingItem = accumulator.find(
       (item: any) => item.choice === currentValue
     );

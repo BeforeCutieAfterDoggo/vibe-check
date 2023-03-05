@@ -2,7 +2,6 @@ import {
   collection,
   DocumentData,
   FirestoreDataConverter,
-  orderBy,
   query,
   QueryDocumentSnapshot,
   SnapshotOptions,

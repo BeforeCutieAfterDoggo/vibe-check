@@ -9,10 +9,12 @@ const ScaleVisual = ({ question }: { question: any }) => {
     (answer) => answer.questionId === question.id && !answer.skipped
   );
   const response = answers?.map((answer) => answer.response.value);
+  const filteredResponse = response?.filter((item: any) => item !== undefined);
+
   const maxLabel = question?.maxLabel;
   const minLabel = question?.minLabel;
 
-  const detailedAnswers = response?.reduce((accumulator, currentValue) => {
+  const detailedAnswers = filteredResponse?.reduce((accumulator, currentValue) => {
     const existingItem = accumulator.find(
       (item: any) => item.choice === currentValue
     );
@@ -25,7 +27,7 @@ const ScaleVisual = ({ question }: { question: any }) => {
   }, []);
 
   const average =
-    response?.reduce((a: any, b: any) => a + b, 0) / response?.length! / 5;
+    filteredResponse?.reduce((a: any, b: any) => a + b, 0) / filteredResponse?.length! / 5;
 
   return (
     <>

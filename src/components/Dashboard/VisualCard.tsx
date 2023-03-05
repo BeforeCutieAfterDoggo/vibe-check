@@ -12,11 +12,10 @@ const questionComponentMap = {
 };
 
 export default function VisualCard({ question }: { question: Question }) {
-  const session = useContext(SessionContext);
   const QuestionComponent = questionComponentMap[question.type];
 
   return (
-    <div className="max-w-sm mx-auto p-4 bg-white rounded-md shadow-md border-2 border-black">
+    <div className="mt-4 w-full p-4 bg-white rounded-md shadow-md border-2 border-black">
       <h1 className="text-lg font-bold mb-4 font-serif">{question.text}</h1>
       <QuestionComponent question={question} />
     </div>

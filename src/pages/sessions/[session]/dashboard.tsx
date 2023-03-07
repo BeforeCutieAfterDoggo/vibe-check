@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
   const result = link.slice(0, link.lastIndexOf('/'));
   return (
     <SessionProvider sessionId={router.query.session as string}>
-      <div className="bg-[url('/images/bg.png')] bg-fixed bg-center bg-cover ">
+      <div className="bg-[url('/images/bg.png')] bg-fixed bg-center bg-cover min-h-screen">
         <div className="container mx-auto p-8">
           <div className=" mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <h1 className="text-white text-5xl font-bold mb-8 underline decoration-wavy decoration-4 tracking-wide italic font-serif text-center">

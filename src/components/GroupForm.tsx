@@ -8,10 +8,13 @@ const CreateSessionPage = () => {
   const [sessionName, setSessionName] = useState("");
   const [description, setDescription] = useState("");
   const [sessionPassword, setSessionPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const user = useContext(AnonymousUserContext);
   const router = useRouter();
 
   const handleSubmit = async (event: any) => {
+    setIsLoading(true)
     event.preventDefault();
     if (!user) return;
     try {
@@ -23,6 +26,7 @@ const CreateSessionPage = () => {
       setSessionName("");
       setDescription("");
       setSessionPassword("");
+      setIsLoading(false)
       router.push(`sessions/${id.data.sessionId}`);
     } catch (error) {
       handleAxiosError(error);
@@ -106,12 +110,21 @@ const CreateSessionPage = () => {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="border border-white bg-white text-black py-2 px-4 rounded"
-          >
-            Create
-          </button>
+          {isLoading ?
+            <button
+              type="submit"
+              className="border border-white bg-white text-black py-2 px-4 rounded"
+            >
+              Creating...
+            </button> :
+            <button
+              type="submit"
+              className="border border-white bg-white text-black py-2 px-4 rounded"
+            >
+              Create
+            </button>
+          }
+
         </div>
       </form>
     </div>

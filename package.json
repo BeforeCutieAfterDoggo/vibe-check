@@ -36,6 +36,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-responsive-masonry": "^2.1.7",
     "react-tagcloud": "^2.3.1",
     "react-tinder-card": "^1.6.2",
     "react-toastify": "^9.1.1",
@@ -44,6 +45,7 @@
     "wordcloud": "^1.2.2"
   },
   "devDependencies": {
+    "@types/react-responsive-masonry": "^2.1.0",
     "@types/react-tagcloud": "^1.1.7",
     "autoprefixer": "^10.4.13",
     "first-input-delay": "^0.1.3",

@@ -27,6 +27,8 @@ const ScaleQuestionForm = () => {
         maxLabel,
       });
       setQuestionText("");
+      setMaxLabel("");
+      setMinLabel("");
     } catch (error) {
       handleAxiosError(error);
     }

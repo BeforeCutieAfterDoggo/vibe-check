@@ -7,9 +7,11 @@ const ShortAnswerVisual = ({
 }: {
     question: any;
 }) => {
-
-    const answers =  question?.answers;
-    const responses = answers?.map((answer:any) => answer.response.text);
+    let answers = []
+    if (question?.answers) {
+        answers = question?.answers;
+    }
+    const responses = answers?.map((answer: any) => answer.response.text);
     const newData: any = responses?.map((item: any) => {
         return { value: item, count: 1 }
     })

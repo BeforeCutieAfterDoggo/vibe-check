@@ -33,6 +33,9 @@ export default function MultipleChoiceQuestionForm() {
         allowOther,
       });
       setQuestionText("");
+      setData({
+        choices: [] as string[],
+      });
     } catch (error) {
       handleAxiosError(error);
     }

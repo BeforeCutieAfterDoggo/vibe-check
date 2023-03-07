@@ -1,18 +1,16 @@
 import React from "react";
-import { Progress } from "antd";
-import { useContext, useState } from "react";
-import { SessionContext } from "../../providers/SessionProvider";
 import ScaleModal from "./ScaleModal";
 const ScaleVisual = ({ question }: { question: any }) => {
-  const answers = question?.answers;
-  const responses = answers.map((answer:any)=> answer.response).map((obj:any) => obj.value)
-
+  let answers = []
+  if (question?.answers) {
+    answers = question?.answers;
+  }
+  const responses = answers.map((answer: any) => answer.response).map((obj: any) => obj.value)
   const filteredResponse = responses?.filter((item: any) => item !== undefined);
-
   const maxLabel = question?.maxLabel;
   const minLabel = question?.minLabel;
 
-  const detailedAnswers = filteredResponse?.reduce((accumulator:any, currentValue:any) => {
+  const detailedAnswers = filteredResponse?.reduce((accumulator: any, currentValue: any) => {
     const existingItem = accumulator.find(
       (item: any) => item.choice === currentValue
     );
@@ -30,7 +28,6 @@ const ScaleVisual = ({ question }: { question: any }) => {
   return (
     <>
       <div className="h-60">
-        <p className="font-serif font-bold text-center">{question.question}</p>
         <div className="flex h-3/4 justify-center items-center mx-1 flex-col">
           <div className="flex justify-center w-full">
             <div className="flex">

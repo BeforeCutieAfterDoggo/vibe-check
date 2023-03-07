@@ -15,7 +15,7 @@ export default function VisualCard({ question }: { question: Question }) {
   const QuestionComponent = questionComponentMap[question.type];
 
   return (
-    <div className="mt-4 w-full p-4 bg-white rounded-md shadow-md border-2 border-black">
+    <div className=" w-full p-4 bg-white rounded-md shadow-md border-2 border-black">
       <h1 className="text-lg font-bold mb-4 font-serif">{question.text}</h1>
       <QuestionComponent question={question} />
     </div>

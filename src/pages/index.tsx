@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className="h-screen bg-white flex flex-col justify-center items-center">
       <Head>
-        <title>Page Title</title>
+        <title>Vibe Check</title>
       </Head>
       <img
         src="/images/bg.png"

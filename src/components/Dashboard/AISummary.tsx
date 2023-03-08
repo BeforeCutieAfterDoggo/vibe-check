@@ -11,9 +11,13 @@ const AISummary = () => {
   const [generatingSummary, setGeneratingSummary] = React.useState(false);
   const [summary, setSummary] = React.useState("");
   const [apiKey, setApiKey] = React.useState("");
+  // console.log("qq", questions)
+  // const filteredQuestions = questions?.filter(question => question.answers !== undefined && question.answers !== null);
+  // console.log("qq1", filteredQuestions)
 
   const generateSummary = async (personalityType: JudgePersonality) => {
     if (!questions) return;
+    console.log("loading")
     setGeneratingSummary(true);
     try {
       const response = await axios.post("/api/summary", {

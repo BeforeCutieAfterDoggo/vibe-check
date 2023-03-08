@@ -23,6 +23,7 @@ ${personality}. It is VERY IMPORTANT you answer in character. Your job is to sum
 };
 
 const scaleAverage = (answers: Answer[]) => {
+  console.log("aa", answers)
   const sum = answers.reduce((acc, a) => acc + a.response.value, 0);
   return parseFloat((sum / answers.length).toFixed(2));
 };
@@ -52,6 +53,7 @@ const multipleChoiceCounter = (answers: Answer[]) => {
 };
 
 const answerFormatter = (question: Question, answers: Answer[]) => {
+  if (!answers) return "";
   switch (question.type) {
     case "scale":
       return `${scaleAverage(answers)}/5`;

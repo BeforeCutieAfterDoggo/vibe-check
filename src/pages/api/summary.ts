@@ -68,7 +68,7 @@ const answerFormatter = (question: Question, answers: Answer[]) => {
   }
 };
 
-const questionFormatter = (questions: Question[], answers: Answer[]) => {
+const questionFormatter = (questions: Question[]) => {
   /* Example
 
   Q{idx}: [${QUESTION_TYPE}] ${QUESTION}
@@ -76,9 +76,7 @@ const questionFormatter = (questions: Question[], answers: Answer[]) => {
   */
 
   const formatted = questions.map((q, i) => {
-    const questionAnswers = answers.filter(
-      (a) => a.questionId === q.id && !a.skipped
-    );
+    const questionAnswers = q.answers;
     const formattedAnswer = answerFormatter(q, questionAnswers);
     return `Q${i}: [${q.type}] ${q.text}
 A${i}: ${formattedAnswer}`;
@@ -89,16 +87,17 @@ A${i}: ${formattedAnswer}`;
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
-      const { questions, answers, personalityType, apiKey } = req.body;
+      const { questions, personalityType, apiKey } = req.body;
       const config = new Configuration({
         apiKey,
       });
       const openai = new OpenAIApi(config);
-      const formatted = questionFormatter(questions, answers);
+      const formatted = questionFormatter(questions);
       const prompt = promptFn(
         formatted,
         personalityMap[personalityType as JudgePersonality]
       );
+      console.log(prompt);
       const completion = await openai.createCompletion({
         prompt: prompt,
         max_tokens: 1200,

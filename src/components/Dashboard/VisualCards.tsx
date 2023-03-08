@@ -5,7 +5,6 @@ import VisualCard from "./VisualCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const VisualCards = () => {
   const session = useContext(SessionContext);
-  console.log("q", session?.questions)
   const filteredQuestions = session?.questions?.filter(q => q.text !== "");
   return (
     <>

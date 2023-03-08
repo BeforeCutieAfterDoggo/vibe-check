@@ -7,18 +7,17 @@ import { SessionContext } from "../../providers/SessionProvider";
 
 const AISummary = () => {
   const session = useContext(SessionContext);
-  const { questions, answers } = session || {};
+  const { questions } = session || {};
   const [generatingSummary, setGeneratingSummary] = React.useState(false);
   const [summary, setSummary] = React.useState("");
   const [apiKey, setApiKey] = React.useState("");
 
   const generateSummary = async (personalityType: JudgePersonality) => {
+    if (!questions) return;
     setGeneratingSummary(true);
     try {
-      if (!questions || !answers) return;
       const response = await axios.post("/api/summary", {
         questions,
-        answers,
         personalityType,
         apiKey,
       });
